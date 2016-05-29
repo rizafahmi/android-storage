@@ -39,5 +39,14 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
 	}
 	
+	public void loadPref(View view) {
+		SharedPreferences pref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+		String username = pref.getString("username", "");
+		String password = pref.getString("password", "");
+		
+		dataTextView.setText(username + ":" + password);
+	}
+	
 	
 }
