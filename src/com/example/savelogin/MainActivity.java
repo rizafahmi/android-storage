@@ -25,6 +25,11 @@ public class MainActivity extends Activity {
 		usernameEditText = (EditText) findViewById(R.id.usernameEditText);
 		passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 		dataTextView = (TextView) findViewById(R.id.dataTextView);
+		
+		SharedPreferences pref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+		usernameEditText.setText(pref.getString("username", ""));
+		passwordEditText.setText(pref.getString("password", ""));
  	}
 	
 	public void savePref(View view) {
