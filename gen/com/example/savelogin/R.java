@@ -17,9 +17,12 @@ public final class R {
         public static final int dataTextView=0x7f060006;
         public static final int loadButton=0x7f060005;
         public static final int passwordEditText=0x7f060003;
+        public static final int resultInternalTextView=0x7f060009;
         public static final int saveButton=0x7f060004;
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f060001;
+        public static final int textView3=0x7f060007;
+        public static final int textView4=0x7f060008;
         public static final int usernameEditText=0x7f060002;
     }
     public static final class layout {

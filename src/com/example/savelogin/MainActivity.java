@@ -1,5 +1,6 @@
 package com.example.savelogin;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class MainActivity extends Activity {
 	private EditText usernameEditText;
 	private EditText passwordEditText;
 	private TextView dataTextView;
+	private TextView resultInternalTextView;
 	private FileOutputStream fos;
 	private String FILENAME = "UserInfo";
 	
@@ -31,6 +33,7 @@ public class MainActivity extends Activity {
 		usernameEditText = (EditText) findViewById(R.id.usernameEditText);
 		passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 		dataTextView = (TextView) findViewById(R.id.dataTextView);
+		resultInternalTextView = (TextView) findViewById(R.id.resultInternalTextView);
 		
 		SharedPreferences pref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
@@ -85,6 +88,34 @@ public class MainActivity extends Activity {
 		String password = pref.getString("password", "");
 		
 		dataTextView.setText(username + ":" + password);
+		
+		// Load from internal storage
+		String collectedData = null;
+		FileInputStream fis = null;
+		try {
+			fis = openFileInput(FILENAME);
+			byte[] dataArray = new byte[fis.available()];
+			while (fis.read(dataArray) != -1) {
+				collectedData = new String(dataArray);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				fis.close();
+				resultInternalTextView.setText(collectedData);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 	
 	
